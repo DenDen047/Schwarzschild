@@ -87,6 +87,50 @@
 
 
 
+// グローバル変数
+    /*---- I2C_Master.h ----*/
+        const int mbed_slave = 0xA0;
+
+        int val = 1;
+
+        char Mode[0];
+
+        int   Angle = 0;
+        float Speed = 0.00000;
+
+        bool BallCheck = 0;
+
+        char Rec[18];       // 受信用の変数
+        char Order[] = {0x00, 0x01, 0x02, 0x03};    // 0x00 => Order[0]  PINGの確認
+                                                    // 0x01 => Order[1]  IRの確認+ボール保持を確認
+                                                    // 0x02 => Order[2]  LCD
+                                                    // 0x03 => Order[3]  modeの状態確認
+        int Kicker_Flag = 0;
+
+        // PING用の変数
+        int PING_F, PING_R, PING_B, PING_L;
+
+        // IR用の変数
+        int IR_long = 0, IR_near = 0;
+
+        bool sw_flag = 0;
+
+    /*---- Moter.h ----*/
+        float PWM1=0, PWM2=0, PWM3=0;
+
+    /*---- HMC6352.h ----*/
+        const int compass_addr = 0x42;
+        char Compass_mode[3];
+        float  Compass = 0.0;
+        float  Compass_Base = 0.0;
+
+
+
+
+
+
+
+
 
 void SW_Start(void) {
     sw_flag = !sw_flag;
@@ -129,7 +173,6 @@ int main() {
     void MODE(char mode) {
         switch(mode) {
             case 0:  while(1){ FW();            } break;
-            case 1:  while(1){ DF();            } break;
             case 2:  while(1){ IR();            } break;
             case 3:  while(1){ PING();          } break;
             case 4:  while(1){ ORIENTATION();   } break;
