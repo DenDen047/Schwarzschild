@@ -13,6 +13,34 @@ Semaphore PING_slots(2);
 
 
 
+// ピンの設定
+    DigitalOut led1(LED1);
+    DigitalOut led2(LED2);
+    DigitalOut led3(LED3);
+    DigitalOut led4(LED4);
+
+    // ロータリースイッチ
+    DigitalIn Rotary1(p5);
+    DigitalIn Rotary2(p6);
+    DigitalIn Rotary3(p7);
+    DigitalIn Rotary4(p8);
+
+    // ボール保持確認ピン
+    DigitalIn BallCheck(p29);
+
+    // それぞれのマイコンとの通信
+    I2CSlave I2C_avr(p28, p27);
+    I2CSlave I2C_master(p9, p10);
+
+    /* 超音波距離センサのピンを設定 */
+    Ping PING_F(p24);
+    Ping PING_R(p21);
+    Ping PING_B(p22);
+    Ping PING_L(p23);
+
+
+
+
 // プロトタイプ宣言
     /*---- RotarySW.h ----*/
         void FW(void);
@@ -52,32 +80,6 @@ Semaphore PING_slots(2);
 
     bool Flag = 0;
 
-
-
-// ピンの設定
-    DigitalOut led1(LED1);
-    DigitalOut led2(LED2);
-    DigitalOut led3(LED3);
-    DigitalOut led4(LED4);
-
-    // ロータリースイッチ
-    DigitalIn Rotary1(p5);
-    DigitalIn Rotary2(p6);
-    DigitalIn Rotary3(p7);
-    DigitalIn Rotary4(p8);
-
-    // ボール保持確認ピン
-    DigitalIn BallCheck(p29);
-
-    // それぞれのマイコンとの通信
-    I2CSlave I2C_avr(p28, p27);
-    I2CSlave I2C_master(p9, p10);
-
-    /* 超音波距離センサのピンを設定 */
-    Ping PING_F(p24);
-    Ping PING_R(p21);
-    Ping PING_B(p22);
-    Ping PING_L(p23);
 
 
 
