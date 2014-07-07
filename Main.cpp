@@ -192,30 +192,7 @@ int main() {
         MBED_IR();
         COMPASS();
 
-        // Kickerの制御
-            /*
-            if(!Kicker_Flag) {                  // Chargeの開始
-                Kicker_Timer.reset();
-                shout=0;  charge=1;  Kicker_Timer.start();
-                Kicker_Flag = 1;
-            } else {                            // Charge時間を確認
-                // Kicker_Timer.stop();
-                if (Kicker_Timer.read() > 10.0) {
-                    charge = 0;
-                    Kicker_Flag = 2;
-                }
-            }
-            if(BallCheck && Kicker_Flag==2) {   // Kick可能な時の処理
-                int ping_width = PING_R + PING_L;
-                if (ping_width>150) {
-                    ping_width = PING_R - PING_L;
-                    if (ping_width> 90) Moter(1.0, Angle,  0.1);
-                    if (ping_width<-90) Moter(1.0, Angle, -0.1);
-                }
-                charge=0;  shout=1;  wait(0.3);
-                Kicker_Flag = 0;
-            }
-            */
+
         Moter(Speed, Angle, Auto_Corrction());
 
         // if (10.0 < Compass && Compass < 180.0) {
