@@ -8,40 +8,6 @@
 
 #define PI 3.14159265358979 // 円周率πの定義
 
-
-// プロトタイプ宣言
-    void SW_Start(void);
-
-    /*---- RotarySW.h ----*/
-        void FW(void);
-        void DF(void);
-        void DEBUG_IR(void);
-        void DEBUG_PING(void);
-        void DEBUG_ANGLE(void);
-        void DEBUG_KICKER(void);
-        void DEBUG_MOTER(void);
-        void DEBUG_LINE(void);
-
-    /*---- I2C_Master.h ----*/
-        void MBED_PING(void);
-        void MBED_IR(void);
-        void MBED_LCD(void);
-        void MBED_MODE(void);
-
-    /*---- Moter.h ----*/
-        void Moter(float speed, int angle, float omega);
-        void MoterApi(bool m1, bool m2, bool m3);
-        void MoterReset (bool m1, bool m2, bool m3);
-        float Auto_Corrction(void);
-
-    /*---- HMC6352.h ----*/
-        void COMPASS_RESET(void);
-        void COMPASS(void);
-
-    /*---- ModeChange.h ----*/
-        void MODE(char mode);
-
-
 // ピンの設定
     DigitalOut led1(LED1);
     DigitalOut led2(LED2);
@@ -82,6 +48,40 @@
     I2C I2C_mbed(p28, p27);
     I2C LCD(p9 , p10);
     ACM1602NI lcd(LCD);
+
+
+
+// プロトタイプ宣言
+    void SW_Start(void);
+
+    /*---- RotarySW.h ----*/
+        void FW(void);
+        void DF(void);
+        void DEBUG_IR(void);
+        void DEBUG_PING(void);
+        void DEBUG_ANGLE(void);
+        void DEBUG_KICKER(void);
+        void DEBUG_MOTER(void);
+        void DEBUG_LINE(void);
+
+    /*---- I2C_Master.h ----*/
+        void MBED_PING(void);
+        void MBED_IR(void);
+        void MBED_LCD(void);
+        void MBED_MODE(void);
+
+    /*---- Moter.h ----*/
+        void Moter(float speed, int angle, float omega);
+        void MoterApi(bool m1, bool m2, bool m3);
+        void MoterReset (bool m1, bool m2, bool m3);
+        float Auto_Corrction(void);
+
+    /*---- HMC6352.h ----*/
+        void COMPASS_RESET(void);
+        void COMPASS(void);
+
+    /*---- ModeChange.h ----*/
+        void MODE(char mode);
 
 
 

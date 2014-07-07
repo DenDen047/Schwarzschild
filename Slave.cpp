@@ -119,20 +119,12 @@ void PING_thread(void const *ping_data) {
         PING_R.Send();
         PING_B.Send();
         PING_L.Send();
-
-        wait_ms(30);    // 待つ
-
+        wait_ms(30);
         /* 結果から距離を算出 */
         Ping_F = PING_F.Read_cm() / 2;  // 正面の距離を記録 [cm]
         Ping_R = PING_R.Read_cm() / 2;  // 右側の距離を記録 [cm]
         Ping_B = PING_B.Read_cm() / 2;  // 後ろの距離を記録 [cm]
         Ping_L = PING_L.Read_cm() / 2;  // 左側の距離を記録 [cm]
-
-        // PING_F.Send();  wait_ms(30);  Ping_F=PING_F.Read_cm()/2;
-        // PING_R.Send();  wait_ms(30);  Ping_R=PING_R.Read_cm()/2;
-        // PING_B.Send();  wait_ms(30);  Ping_B=PING_B.Read_cm()/2;
-        // PING_L.Send();  wait_ms(30);  Ping_L=PING_L.Read_cm()/2;
-
 
         /* アクセス可能になるまで待機してから、値を代入 */
         PING_slots.wait();
