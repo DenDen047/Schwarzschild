@@ -8,6 +8,9 @@
 
 #define PI 3.14159265358979 // 円周率πの定義
 
+
+
+
 // ピンの設定
     DigitalOut led1(LED1);
     DigitalOut led2(LED2);
@@ -56,7 +59,6 @@
 
     /*---- RotarySW.h ----*/
         void FW(void);
-        void DF(void);
         void DEBUG_IR(void);
         void DEBUG_PING(void);
         void DEBUG_ANGLE(void);
@@ -105,7 +107,6 @@ int main() {
     lcd.locate(0, 0);
     switch(Mode[0]) {
         case 0: lcd.printf("FW");              while(1) FW();
-        case 1: lcd.printf("DF");              while(1) DF();
         case 2: lcd.printf("DEBUG_IR");        while(1) DEBUG_IR();
         case 3: lcd.printf("DEBUG_PING");      while(1) DEBUG_PING();
         case 4: lcd.printf("DEBUG_ANGLE");     while(1) DEBUG_ANGLE();
@@ -208,48 +209,6 @@ int main() {
         }
     }
 
-    // "1"防御モード
-    void DF(void) {
-        MBED_IR();
-        MBED_PING();
-            if (PING_B>25) {
-                int ping_width = PING_R - PING_L;
-                if(ping_width> 90) Angle=90;
-                if(ping_width<-90) Angle=270;
-            }
-        COMPASS();
-        // Kickerの制御
-            /*
-            if(!Kicker_Flag) {                  // Chargeの開始
-                Kicker_Timer.reset();
-                shout=0;  charge=1;  Kicker_Timer.start();
-                Kicker_Flag = 1;
-            } else {                            // Charge時間を確認
-                // Kicker_Timer.stop();
-                if (Kicker_Timer.read() > 10.0) {
-                    charge = 0;
-                    Kicker_Flag = 2;
-                }
-            }
-            if(BallCheck && Kicker_Flag==2) {   // Kick可能な時の処理
-                int ping_width = PING_R + PING_L;
-                if (ping_width>150) {
-                    ping_width = PING_R - PING_L;
-                    if (ping_width> 90) Moter(1.0, Angle,  0.1);
-                    if (ping_width<-90) Moter(1.0, Angle, -0.1);
-                }
-                charge=0;  shout=1;  wait(0.3);
-                Kicker_Flag = 0;
-            }
-            */
-        // LINEの制御
-            if(LINE_R || LINE_L)  Angle = 360 - Angle;
-            else if(LINE_F)  Angle = 180;
-            else if(LINE_B)  Angle = 0;
-        Moter(Speed, Angle, Auto_Corrction());
-        Moter(Speed, Angle, Auto_Corrction());
-        led1=0; led2=0; led3=0; led4=0;
-    }
 
 
 
