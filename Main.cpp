@@ -128,10 +128,6 @@
 
 
 
-
-
-
-
 void SW_Start(void) {
     sw_flag = !sw_flag;
 }
