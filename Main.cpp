@@ -211,11 +211,10 @@ int main() {
         }
 
         // LINEの制御
-            /*
             if(LINE_R || LINE_L)  Angle = 360 - Angle;
             else if(LINE_F)  Angle = 180;
             else if(LINE_B)  Angle = 0;
-            */
+
             if(LINE_F || LINE_R || LINE_B || LINE_L) {
                 MoterApi(1, 0, 0);
                 pwm1 = 0.5;
@@ -760,6 +759,8 @@ int main() {
         if(max == 0){PWM1=0; PWM2=0; PWM3=0;}
         pwm1 = PWM1/2;    pwm2 = PWM2/2;    pwm3 = PWM3/2;
         led4 = 1;
+
+        // PID制御
     }
 
 
