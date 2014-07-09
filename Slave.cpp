@@ -83,27 +83,6 @@ Semaphore PING_slots(2);
 
 
 
-// モードの設定
-    void Mode(void) {
-        int mode = SW1 + SW2*2 + SW3*4 + SW4*8;
-
-        swmode:
-        switch(mode) {
-            case 0:  FW();          break;
-            case 1:  DF();          break;
-            case 2:  IR();          break;
-            case 3:  PING();        break;
-            case 4:  ORIENTATION(); break;
-            case 5:  KICKER();      break;
-            case 6:  DRIBBLER();    break;
-            case 7:  MOTER();       break;
-            case 8:  LINE();        break;
-            case 9:                 break;
-            default: goto swmode;   break;
-        }
-    }
-
-
 
 /*---- PINGの値を並列処理で取得し続ける ----*/
 void PING_thread(void const *ping_data) {
