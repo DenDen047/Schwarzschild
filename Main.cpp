@@ -117,11 +117,15 @@
 
     /*---- Moter.h ----*/
         float PWM1=0, PWM2=0, PWM3=0;
+        float Kp = 1.0;     // 比例制御の定数
+        float Ki = 1.0;     // 積分制御の定数
+        float Kd = 1.0;     // 微分制御の定数
 
     /*---- HMC6352.h ----*/
         const int compass_addr = 0x42;
-        char Compass_mode[3];
+        char   Compass_mode[3];
         float  Compass = 0.0;
+        float  Compass_ago = 0.0;
         float  Compass_Base = 0.0;
 
 
@@ -759,22 +763,14 @@ int main() {
         if(max == 0){PWM1=0; PWM2=0; PWM3=0;}
         pwm1 = PWM1/2;    pwm2 = PWM2/2;    pwm3 = PWM3/2;
         led4 = 1;
-
-        // PID制御
     }
 
 
     // 角度自動修正関数
     float Auto_Corrction(void) {
-        float omega = 0.00000;
-        if (45.0 < Compass && Compass < 180.0) {
-            omega = -0.3;
-        } else if (-180.0 < Compass && Compass < -45.0) {
-            omega =  0.3;
-        } else {
-            omega =  0.000000;
-        }
-        return omega;
+        // PID制御
+        // 操作量 = Kp*偏差 + Ki*偏差の累積量 + Kd*前回の偏差との差
+        return Kp*Compass + Ki*(Compass+Compass_ago) + Kd*(Compass_ago-Compass);
     }
 
 
