@@ -151,6 +151,7 @@ int main() {
     lcd.locate(0, 0);
     switch(Mode[0]) {
         case 0: lcd.printf("FW");              while(1) FW();
+        case 1: lcd.printf("FW");              while(1) FW();
         case 2: lcd.printf("DEBUG_IR");        while(1) DEBUG_IR();
         case 3: lcd.printf("DEBUG_PING");      while(1) DEBUG_PING();
         case 4: lcd.printf("DEBUG_ANGLE");     while(1) DEBUG_ANGLE();
@@ -167,23 +168,6 @@ int main() {
 
 
 
-
-
-// モード
-    void MODE(char mode) {
-        switch(mode) {
-            case 0:  while(1){ FW();            } break;
-            case 2:  while(1){ IR();            } break;
-            case 3:  while(1){ PING();          } break;
-            case 4:  while(1){ ORIENTATION();   } break;
-            case 5:  while(1){ KICKER();        } break;
-            case 6:  while(1){ DRIBBLER();      } break;
-            case 7:  while(1){ MOTER();         } break;
-            case 8:  while(1){ LINE();          } break;
-            case 9:  break;
-            default:　break;
-        }
-    }
 
 
 
@@ -306,7 +290,7 @@ int main() {
 
 
 
-    void (*Debug_Mode[])(void) = {FW, DF, DEBUG_IR, DEBUG_PING, DEBUG_ANGLE, DEBUG_KICKER, DEBUG_MOTER, DEBUG_LINE};
+    void (*Debug_Mode[])(void) = {FW, FW, DEBUG_IR, DEBUG_PING, DEBUG_ANGLE, DEBUG_KICKER, DEBUG_MOTER, DEBUG_LINE};
 
 
 
